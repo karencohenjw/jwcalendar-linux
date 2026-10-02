@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=JW Calendar
+GenericName=Calendar and Date Utility
+Comment=Offline calendar and date tools
+Exec=jwcalendar-desktop
+Icon=jwcalendar
+Terminal=false
+Categories=Office;Utility;
+StartupNotify=true
