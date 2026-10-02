@@ -35,6 +35,15 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: snapcore/action-build@v1
         id: snapcraft
+      - name: Install and smoke test the strict Snap
+        env:
+          SNAP_FILE: ${{ steps.snapcraft.outputs.snap }}
+        run: |
+          sudo snap install --dangerous "$SNAP_FILE"
+          snap run jwcalendar --version
+          snap run jwcalendar month 2027 1
+          snap run jwcalendar date 2027-01-01
+          sudo snap remove jwcalendar
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: jwcalendar-snap-${{ github.sha }}
