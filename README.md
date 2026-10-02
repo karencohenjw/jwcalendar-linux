@@ -7,11 +7,20 @@ JW Calendar is an offline-first calendar and date utility for the Linux desktop 
 
 ## Install
 
+The `jwcalendar` Snap package builds successfully, but its Snap Store name is still awaiting manual public-visibility review. The Store listing is not public yet. Once it is approved, install it with:
+
 ```sh
 sudo snap install jwcalendar
 ```
 
-The snap provides a `jwcalendar` terminal command and a **JW Calendar** desktop launcher. The snap is designed for strict confinement and does not need network access for calendar calculations.
+The Snap provides a `jwcalendar` terminal command and a **JW Calendar** desktop launcher. It is designed for strict confinement and does not need network access for calendar calculations.
+
+To run the CLI from a source checkout before the Store listing is public:
+
+```sh
+python3 -m pip install .
+jwcalendar --help
+```
 
 ## Use the command line
 
