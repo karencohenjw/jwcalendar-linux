@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: Existing version tag to release (for example v0.1.0)
+        description: Tag to create for this release (for example v0.1.0)
         required: true
         type: string
 
@@ -16,8 +16,6 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ inputs.tag }}
       - uses: snapcore/action-build@v1
         id: snapcraft
       - name: Create release with the built Snap
@@ -28,4 +26,5 @@ jobs:
         run: |
           gh release create "$RELEASE_TAG" "$SNAP_FILE" \
             --title "JW Calendar v0.1.0 — Linux Calendar & Date Utility" \
-            --notes-file .github/release-notes-v0.1.0.md
+            --notes-file .github/release-notes-v0.1.0.md \
+            --target "$GITHUB_SHA"
