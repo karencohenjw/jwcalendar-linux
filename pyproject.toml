@@ -1,0 +1,69 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jwcalendar-linux"
+version = "0.1.0"
+description = "Offline-first calendar and date utility for the Linux desktop and terminal."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Karen Cohen"}]
+dependencies = ["jwcalendar-calendrical>=0.1.0,<0.2.0"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Environment :: X11 Applications :: GTK",
+  "Intended Audience :: End Users/Desktop",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Office/Business :: Scheduling",
+  "Topic :: Utilities",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "hypothesis>=6", "coverage[toml]>=7"]
+dev = ["pytest>=8", "hypothesis>=6", "coverage[toml]>=7", "ruff>=0.8", "mypy>=1.13", "build>=1.2", "twine>=6"]
+
+[project.scripts]
+jwcalendar = "jwcalendar_linux.cli:main"
+jwcalendar-desktop = "jwcalendar_linux.desktop:main"
+
+[project.urls]
+Homepage = "https://jwcalendar.com/"
+"Source code" = "https://github.com/karencohenjw/jwcalendar-linux"
+"Bug tracker" = "https://github.com/karencohenjw/jwcalendar-linux/issues"
+"Yearly calendar" = "https://jwcalendar.com/yearly-calendar/"
+"Blank calendar" = "https://jwcalendar.com/blank-calendar/"
+"Julian calendar" = "https://jwcalendar.com/julian-calendar/"
+"Holidays" = "https://jwcalendar.com/holidays/"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jwcalendar_linux"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/snap", "/README.md", "/LICENSE", "/CHANGELOG.md", "/CONTRIBUTING.md", "/SECURITY.md", "/CODE_OF_CONDUCT.md", "/pyproject.toml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+files = ["src"]
+ignore_missing_imports = true
