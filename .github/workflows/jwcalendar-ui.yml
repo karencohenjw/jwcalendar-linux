@@ -1,16 +1,19 @@
 name: Linux GUI screenshots
 
+
 on:
   workflow_dispatch:
   push:
     branches: [main]
     paths:
       - 'src/**'
-      - 'tools/capture_linux_screenshots.sh'
+      - 'tools/capture_gui.sh'
       - '.github/workflows/jwcalendar-ui.yml'
+
 
 permissions:
   contents: read
+
 
 jobs:
   capture:
@@ -26,10 +29,11 @@ jobs:
           python3 -m venv --system-site-packages .venv
           .venv/bin/python -m pip install .
       - name: Launch the actual GTK app and capture Linux screenshots
-        run: bash tools/capture_linux_screenshots.sh screenshots
+        run: bash tools/capture_gui.sh screenshots
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: jwcalendar-linux-screenshots
           path: screenshots/*.png
           if-no-files-found: error
           retention-days: 30
+
