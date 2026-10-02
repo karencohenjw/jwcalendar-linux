@@ -1,0 +1,35 @@
+name: Linux GUI screenshots
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'tools/capture_linux_screenshots.sh'
+      - '.github/workflows/ui-screenshots.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install GTK and screenshot tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick python3-gi gir1.2-gtk-3.0 xdotool xterm xvfb
+      - name: Install JW Calendar
+        run: |
+          python3 -m venv --system-site-packages .venv
+          .venv/bin/python -m pip install .
+      - name: Launch the actual GTK app and capture Linux screenshots
+        run: tools/capture_linux_screenshots.sh screenshots
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: jwcalendar-linux-screenshots
+          path: screenshots/*.png
+          if-no-files-found: error
+          retention-days: 30
