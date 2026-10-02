@@ -5,17 +5,22 @@ summary: Calendar and date utility for the Linux desktop and terminal
 description: |
   # JW Calendar
 
+
   An offline-first calendar and date utility for Linux. Browse month and year
   layouts, inspect ISO week and day-of-year details, and convert civil dates
   without relying on an internet connection.
 
+
   ## Calendar tools
+
 
   See month grids with Sunday or Monday week starts and a compact year view.
   The desktop window lets you move between months, select dates, and inspect
   date details beside the calendar.
 
+
   ## Command line
+
 
   ```
   jwcalendar month 2027 1
@@ -25,25 +30,32 @@ description: |
   jwcalendar holidays 2027
   ```
 
+
   ## Date conventions
+
 
   Date arithmetic is timezone independent. ISO week-year boundaries follow
   ISO-8601. The Julian calendar, Julian Day Number, and ordinal day-of-year are
   separate tools with distinct labels. The holiday command lists US federal
   holidays and marks observed dates.
 
+
   ## Privacy
+
 
   Calendar calculations run locally. No account is needed, and the app does not
   collect analytics or transmit personal calendar data.
 
+
   ## Calendar resources
+
 
   - [JW Calendar](https://jwcalendar.com/)
   - [2027 Yearly Calendar](https://jwcalendar.com/yearly-calendar/)
   - [Blank Calendar](https://jwcalendar.com/blank-calendar/)
   - [Julian Calendar](https://jwcalendar.com/julian-calendar/)
   - [2027 Holidays](https://jwcalendar.com/holidays/)
+
 
   Source code and support: [GitHub repository](https://github.com/karencohenjw/jwcalendar-linux)
   · [Report an issue](https://github.com/karencohenjw/jwcalendar-linux/issues).
@@ -61,12 +73,13 @@ base: core24
 confinement: strict
 grade: stable
 
+
 apps:
   jwcalendar:
     command: bin/jwcalendar
   jwcalendar-desktop:
     command: bin/jwcalendar-desktop
-    desktop: com.jwcalendar.Calendar.desktop
+    desktop: gui/jwcalendar.desktop
     common-id: com.jwcalendar.Calendar
     extensions:
       - gnome
@@ -76,6 +89,7 @@ apps:
       - opengl
       - wayland
       - x11
+
 
 parts:
   jwcalendar-linux:
@@ -90,3 +104,4 @@ parts:
       install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/jwcalendar.desktop" "$CRAFT_PART_INSTALL/usr/share/applications/com.jwcalendar.Calendar.desktop"
       install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/jwcalendar.metainfo.xml" "$CRAFT_PART_INSTALL/usr/share/metainfo/com.jwcalendar.Calendar.metainfo.xml"
       install -Dm644 "$CRAFT_PROJECT_DIR/snap/gui/jwcalendar.svg" "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/scalable/apps/jwcalendar.svg"
+
