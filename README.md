@@ -7,7 +7,7 @@ JW Calendar is an offline-first calendar and date utility for the Linux desktop 
 
 ## Install
 
-The `jwcalendar` Snap package builds successfully, but its Snap Store name is still awaiting manual public-visibility review. The Store listing is not public yet. Once it is approved, install it with:
+The `jwcalendar` Snap package builds and passes local-install smoke tests. Snap Store name registration has not been submitted: the Store form currently forces private registration while new names are reviewed, and this project requires a public listing. The Store page is therefore not available yet. Once public registration is enabled, install it with:
 
 ```sh
 sudo snap install jwcalendar
